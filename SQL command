@@ -1,0 +1,125 @@
+Start SQL: 				            	sudo mysql -u root -p
+create a database: 					CREATE DATABASE [db name];
+show list of database			       	show databases;
+show current database: 			        SELECT DATABASE();
+go to database: 			            	use [db name];
+show list of tables in databass: 	    		show tables
+create table:                   	    		create table product('data', 'data');
+show table fields: 			            	show fields from [table name];
+insert values on table: 		        	insert into [table name] values('data', 'data');
+display values on table: 		        	select * from [table name];
+exit mysql: 				            	exit
+
+
+
+show mysql users:					SELECT user FROM mysql.user; 
+create new user:					CREATE USER 'username'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+grant priveleges 					GRANT ALL PRIVILEGES ON *.* TO 'username'@'localhost' WITH GRANT OPTION;
+
+
+--clear console
+ctrl + L
+
+--create a table 
+CREATE TABLE Admin (
+    FirstName varchar(255),
+    LastName varchar(255),
+    Username varchar(255),
+    Email varchar(255),
+    Password varchar(255)
+);
+
+--insert into table
+insert into Admin values('Bernard', 'GoleCruz', 'Bernard_gcruz@yahoo.com', 'uname', 'pwd');
+
+
+CREATE TABLE Product (
+    productID int(4) NOT NULL,
+    productName varchar(255) NOT NULL,
+    availQty    int,
+    Category varchar(255) NOT NULL,
+    buyingPrice DECIMAL(5,2) NOT NULL,
+    sellingPrice 
+    PRIMARY KEY (productID)
+);
+
+insert into Product values(1001, 'shampoo', 3, 2.00);
+insert into Product values(1002, 'conditioner', 4, 3.00);
+insert into Product values(1003, 'body wash', 7, 5.00);
+insert into Product values(1004, 'soap', 3, 1.25);
+
+insert into Product values(2001, 'brocolli', 10, 2.88);
+insert into Product values(2002, 'corn', 30, .50);
+insert into Product values(2003, 'lettuce', 12, 1.88);
+insert into Product values(2004, 'asparagus', 9, 2.98);
+
+insert into Product values(3001, 'milk', 30, 1.10);
+insert into Product values(3002, 'eggs', 18, 1.74);
+insert into Product values(3003, 'butter', 15, 2.98);
+insert into Product values(3004, 'cheese', 20, 1.20);
+
+insert into Product values(4001, 'pen', 30, 2.25);
+insert into Product values(4002, 'pencil', 18, 1.35);
+insert into Product values(4003, 'copy paper', 15, 2.50);
+insert into Product values(4004, 'folder', 30, .50);
+
+
+CREATE TABLE Item (
+    ItemName varchar(255) NOT NULL,
+    Category varchar(255) NOT NULL,
+    buyingPrice DECIMAL(5,2) NOT NULL
+  
+);
+
+insert into Item values('shampoo', 'Toiletry',  2.00);
+insert into Item values('conditioner','Toiletry', 3.00);
+insert into Item values('body wash','Toiletry', 5.00);
+insert into Item values('soap','Toiletry', 1.25);
+
+insert into Item values('brocolli', 'Vegetables',  2.88);
+insert into Item values('corn','Vegetables', .50);
+insert into Item values('lettuce','Vegetables', 1.88);
+insert into Item values('asparagus','Vegetables', 2.98);
+
+insert into Item values('milk', 'Grocery',  1.10);
+insert into Item values('eggs','Grocery', 1.74);
+insert into Item values('butter','Grocery', 2.98);
+insert into Item values('cheese','Grocery', 1.20);
+
+insert into Item values('pen', 'Stationary', 2.25);
+insert into Item values('pencil', 'Stationary', 1.35);
+insert into Item values('copy paper', 'Stationary', 2.50);
+insert into Item values('folder', 'Stationary', .50);
+
+
+
+
+
+--delete a table 
+DROP TABLE Product;
+DROP TABLE Item;
+show tables; 
+
+--delete from table
+DELETE FROM Product  WHERE productId = 1;
+
+--show fields of table
+show fields from Product;
+
+--display detail of table
+select * from  Item; 
+select * from  Product; 
+
+--select by category 
+select * from  Item where Category = 'Grocery';
+select * from  Item where Category = 'Toiletry ';
+select * from  Item where Category = 'Vegetables';
+select * from  Item where Category = 'Stationary';
+
+
+--sum of Item (buying Price)
+SELECT SUM(buyingPrice) from Product;  
+SELECT SUM(availQty) from Product; 
+
+--display profits by category 
+SELECT Category, SUM(buyingPrice) FROM Item GROUP BY Category;
