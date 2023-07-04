@@ -67,11 +67,11 @@ public class optionMenu {
                     break;
                 //Display total Expenses
                 case 5:
-                   // sm.dispExpenses(); 
+                    sm.totalExpenses(); 
                     break;
-                //Display total Profits
+                //Display Profits
                 case 6:
-                   // sm.dispProfitbyCategory(); 
+                    sm.profitbyCategory();
                     break;                    
                 }       
             } 

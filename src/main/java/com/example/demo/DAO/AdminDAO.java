@@ -60,7 +60,7 @@ public class AdminDAO {
                 ResultSet rs = ps.executeQuery(); 
                   
                 while( rs.next() ){
-                    return new Admin(rs.getString("username"), rs.getString("password"));
+                    return new Admin(rs.getString("Username"), rs.getString("Password"));
 
                 }
                 

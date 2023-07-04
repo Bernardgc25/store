@@ -39,7 +39,7 @@ CREATE TABLE Product (
     availQty    int,
     Category varchar(255) NOT NULL,
     buyingPrice DECIMAL(5,2) NOT NULL,
-    sellingPrice 
+    sellingPrice DECIMAL(5,2) , 
     PRIMARY KEY (productID)
 );
 
@@ -109,6 +109,7 @@ show fields from Product;
 --display detail of table
 select * from  Item; 
 select * from  Product; 
+select * from  Admin; 
 
 --select by category 
 select * from  Item where Category = 'Grocery';
