@@ -1,5 +1,6 @@
 package com.example.demo.DAO;
 
+import java.io.CharArrayReader;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,6 +46,36 @@ public class StoreDAO {
         }       
             return null;     
     }
+
+
+
+    //retrieve product by productName
+    public Product searchProductName(char[] productName){
+    
+        try {
+            String sql = "SELECT * from Product where productName = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+                
+            //ps.setString(1, productName);
+            
+            //accept character array as parameter ex: char[] productName
+            ps.setCharacterStream(1, new CharArrayReader(productName));
+
+            ResultSet rs = ps.executeQuery(); 
+                  
+            while( rs.next() ){
+              
+                return new Product(rs.getInt("productId"), rs.getString("productName"), rs.getString("Category"), 
+                        rs.getInt("availQty"), rs.getDouble("buyingPrice"), rs.getDouble("sellingPrice"));
+            }       
+        }
+        catch (SQLException e) {
+               System.out.println(e.getMessage());
+        }
+            
+            return null; 
+    }
+
     
 
 

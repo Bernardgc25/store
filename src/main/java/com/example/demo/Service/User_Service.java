@@ -80,6 +80,9 @@ public class User_Service implements User_Service_Interface{
                         //save input into variable including spaces 
                         scanner.nextLine(); 
                         
+                        //read character array as input, read including spaces
+                        //char[] Name = scanner.nextLine().toCharArray();
+
                         System.out.print("Enter firstName: ");
                         ad.setFirstname(scanner.next().toCharArray());
 
