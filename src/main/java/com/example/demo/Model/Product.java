@@ -34,6 +34,17 @@ public class Product extends Item{
         this.sellingPrice = (buyingPrice * 0.5) + buyingPrice;
     }
 
+    //constructor when retrieving product from database
+    public Product(int productId, String productName, String Category, int availQty, double buyingPrice, double sellingPrice) {
+        super(productName, Category, buyingPrice);
+
+        this.productId = productId; 
+        this.ItemName = productName;
+        this.availQty = availQty; 
+        //this.buyingPrice = buyingPrice; 
+        this.sellingPrice = (buyingPrice * 0.5) + buyingPrice;
+    }
+
 
 
 
