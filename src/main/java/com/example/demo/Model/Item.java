@@ -8,13 +8,19 @@ public class Item{
     public Item(){
 
     }
-    
+
+    //constructor
     public Item(String ItemName, String Category, double buyingPrice){
         this.ItemName = ItemName; 
         this.Category = Category; 
         this.buyingPrice = buyingPrice; 
     }
 
+
+
+    
+    
+   
    
 
 }

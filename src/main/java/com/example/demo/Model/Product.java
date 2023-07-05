@@ -17,20 +17,9 @@ public class Product extends Item{
         super(productName, Category, buyingPrice);
 
         //this.productId = productId; 
-        this.ItemName = productName;
+        this.productName = productName;
         this.availQty = availQty; 
         this.buyingPrice = buyingPrice; 
-        this.sellingPrice = (buyingPrice * 0.5) + buyingPrice;
-    }
-
-    //constructor when retrieving product from database
-    public Product(int productId, String productName, String Category, int availQty, double sellingPrice) {
-        //super(productName, Category, buyingPrice);
-
-        this.productId = productId; 
-        this.ItemName = productName;
-        this.availQty = availQty; 
-        //this.buyingPrice = buyingPrice; 
         this.sellingPrice = (buyingPrice * 0.5) + buyingPrice;
     }
 
@@ -39,13 +28,56 @@ public class Product extends Item{
         super(productName, Category, buyingPrice);
 
         this.productId = productId; 
-        this.ItemName = productName;
+        this.productName = productName;
         this.availQty = availQty; 
-        //this.buyingPrice = buyingPrice; 
+        this.buyingPrice = buyingPrice; 
         this.sellingPrice = (buyingPrice * 0.5) + buyingPrice;
     }
 
+    public double getBuyingPrice() {
+        return buyingPrice;
+    }
 
+    
+
+    public String getCategory() {
+        return Category;
+    }
+
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public double getSellingPrice() {
+        return sellingPrice;
+    }
+
+    public void setSellingPrice(double sellingPrice) {
+        this.sellingPrice = sellingPrice;
+    }
+
+    public int getAvailQty() {
+        return availQty;
+    }
+
+    public void setAvailQty(int availQty) {
+        this.availQty = availQty;
+    }
+
+    
 
 
 }

@@ -34,35 +34,34 @@ insert into Admin values('Bernard', 'GoleCruz', 'Bernard_gcruz@yahoo.com', 'unam
 
 
 CREATE TABLE Product (
-    productId int(4) NOT NULL,
+    productID int(4) NOT NULL,
     productName varchar(255) NOT NULL,
-    Category varchar(255) NOT NULL,
     availQty    int,
+    Category varchar(255) NOT NULL,
     buyingPrice DECIMAL(5,2) NOT NULL,
     sellingPrice DECIMAL(5,2) , 
     PRIMARY KEY (productID)
 );
 
---insert values 
-insert into Product values(1001, 'shampoo', 'Toiletry', 3, 2.00, (buyingPrice * 0.5) + buyingPrice );
-insert into Product values(1002, 'conditioner', 'Toiletry', 4, 3.00, (buyingPrice * 0.5) + buyingPrice );
-insert into Product values(1003, 'body wash', 'Toiletry', 7, 5.00, (buyingPrice * 0.5) + buyingPrice );
-insert into Product values(1004, 'soap', 'Toiletry', 3, 1.25, (buyingPrice * 0.5) + buyingPrice );
+insert into Product values(1001, 'shampoo', 3, 2.00);
+insert into Product values(1002, 'conditioner', 4, 3.00);
+insert into Product values(1003, 'body wash', 7, 5.00);
+insert into Product values(1004, 'soap', 3, 1.25);
 
-insert into Product values(2001, 'brocolli', 'Vegetables',  10, 2.88, (buyingPrice * 0.5) + buyingPrice );
-insert into Product values(2002, 'corn', 'Vegetables', 30, .50, (buyingPrice * 0.5) + buyingPrice );
-insert into Product values(2003, 'lettuce', 'Vegetables', 12, 1.88, (buyingPrice * 0.5) + buyingPrice );
-insert into Product values(2004, 'asparagus','Vegetables', 9, 2.98, (buyingPrice * 0.5) + buyingPrice );
+insert into Product values(2001, 'brocolli', 10, 2.88);
+insert into Product values(2002, 'corn', 30, .50);
+insert into Product values(2003, 'lettuce', 12, 1.88);
+insert into Product values(2004, 'asparagus', 9, 2.98);
 
-insert into Product values(3001, 'milk', 'Grocery', 30, 1.10, (buyingPrice * 0.5) + buyingPrice );
-insert into Product values(3002, 'eggs', 'Grocery', 18, 1.74, (buyingPrice * 0.5) + buyingPrice );
-insert into Product values(3003, 'butter', 'Grocery', 15, 2.98, (buyingPrice * 0.5) + buyingPrice );
-insert into Product values(3004, 'cheese', 'Grocery', 20, 1.20, (buyingPrice * 0.5) + buyingPrice );
+insert into Product values(3001, 'milk', 30, 1.10);
+insert into Product values(3002, 'eggs', 18, 1.74);
+insert into Product values(3003, 'butter', 15, 2.98);
+insert into Product values(3004, 'cheese', 20, 1.20);
 
-insert into Product values(4001, 'pen', 'Stationary',30, 2.25, (buyingPrice * 0.5) + buyingPrice );
-insert into Product values(4002, 'pencil', 'Stationary', 18, 1.35, (buyingPrice * 0.5) + buyingPrice );
-insert into Product values(4003, 'copy paper', 'Stationary', 15, 2.50, (buyingPrice * 0.5) + buyingPrice );
-insert into Product values(4004, 'folder', 'Stationary', 30, .50, (buyingPrice * 0.5) + buyingPrice );
+insert into Product values(4001, 'pen', 30, 2.25);
+insert into Product values(4002, 'pencil', 18, 1.35);
+insert into Product values(4003, 'copy paper', 15, 2.50);
+insert into Product values(4004, 'folder', 30, .50);
 
 
 CREATE TABLE Item (
