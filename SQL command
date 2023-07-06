@@ -65,58 +65,25 @@ insert into Product values(4003, 'copy paper', 'Stationary', 15, 2.50, (buyingPr
 insert into Product values(4004, 'folder', 'Stationary', 30, .50, (buyingPrice * 0.5) + buyingPrice );
 
 
-CREATE TABLE Item (
-    ItemName varchar(255) NOT NULL,
-    Category varchar(255) NOT NULL,
-    buyingPrice DECIMAL(5,2) NOT NULL
-  
-);
-
-insert into Item values('shampoo', 'Toiletry',  2.00);
-insert into Item values('conditioner','Toiletry', 3.00);
-insert into Item values('body wash','Toiletry', 5.00);
-insert into Item values('soap','Toiletry', 1.25);
-
-insert into Item values('brocolli', 'Vegetables',  2.88);
-insert into Item values('corn','Vegetables', .50);
-insert into Item values('lettuce','Vegetables', 1.88);
-insert into Item values('asparagus','Vegetables', 2.98);
-
-insert into Item values('milk', 'Grocery',  1.10);
-insert into Item values('eggs','Grocery', 1.74);
-insert into Item values('butter','Grocery', 2.98);
-insert into Item values('cheese','Grocery', 1.20);
-
-insert into Item values('pen', 'Stationary', 2.25);
-insert into Item values('pencil', 'Stationary', 1.35);
-insert into Item values('copy paper', 'Stationary', 2.50);
-insert into Item values('folder', 'Stationary', .50);
-
-
-
-
-
 --delete a table 
 DROP TABLE Product;
-DROP TABLE Item;
 show tables; 
 
---delete from table
+--delete from table, specific row
 DELETE FROM Product  WHERE productId = 1;
 
 --show fields of table
 show fields from Product;
 
 --display detail of table
-select * from  Item; 
 select * from  Product; 
 select * from  Admin; 
 
 --select by category 
-select * from  Item where Category = 'Grocery';
-select * from  Item where Category = 'Toiletry ';
-select * from  Item where Category = 'Vegetables';
-select * from  Item where Category = 'Stationary';
+select * from  Product where Category = 'Grocery';
+select * from  Product where Category = 'Toiletry ';
+select * from  Product where Category = 'Vegetables';
+select * from  Product where Category = 'Stationary';
 
 
 --sum of Item (buying Price)
@@ -125,3 +92,17 @@ SELECT SUM(availQty) from Product;
 
 --display profits by category 
 SELECT Category, SUM(buyingPrice) FROM Item GROUP BY Category;
+
+--display Expenses
+SELECT productName,
+buyingPrice*availQty AS Expenses
+FROM Product;
+
+
+--create TotalExpenses
+CREATE TABLE  TotalExpenses(
+    productName varchar(255) NOT NULL,
+    Category varchar(255) NOT NULL,
+    Expense DECIMAL(5,2) , 
+    PRIMARY KEY (productID)
+);
