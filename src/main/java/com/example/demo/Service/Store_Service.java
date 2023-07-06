@@ -44,8 +44,72 @@ public class Store_Service implements Store_Service_Interface{
 
     @Override
     public void dispsallProduct() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'dispsallProduct'");
+
+        Map<Integer, Product> map_product = new HashMap<Integer, Product>();
+       
+        //invoke serviceDAO
+        map_product = sdao.displayallProducts();
+        
+        boolean notDone = true;
+        //////
+        //clear screen
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();   
+
+        
+        while(notDone){
+            
+            if(map_product.isEmpty()){
+                System.out.println("list is empty!! ");
+            }
+            else{
+                //display all products in table format
+                //System.out.println("list of products:"); 
+
+                System.out.printf("%-20s %-22s %-22s %-15s %-20s %-20s \n", "Product id", "Product Name", "Category", "Qty", "Buying Price", "Selling Price");  
+                System.out.println("");
+
+                //iterate over by value hashmap 
+                Set<Map.Entry<Integer, Product>> pset = map_product.entrySet();
+                for(Map.Entry<Integer, Product> p: pset){
+                    //System.out.print(+p.getKey());
+                    Product pobj = p.getValue();
+             
+                    System.out.printf("%-20d %-22s %-22s %-15d %-20.2f %-20.2f \n",  pobj.getProductId(),  pobj.getProductName(), pobj.getCategory(),
+                                    pobj.getAvailQty(), pobj.getBuyingPrice(),  pobj.getSellingPrice());
+                }
+               
+            }
+          
+                //only accepts m
+                boolean wrongcharacter = true;  
+                while(wrongcharacter){
+                    //prompt user to search again
+                    System.out.println("");
+                    System.out.print("(M) go back to menu: ");
+                    //System.out.println("");
+                    //System.out.print("Enter a choice: ");
+
+                    char choice = scanner.next().charAt(0);
+                    Character m = 'm';
+                    Character M = 'M';
+                
+                    if (m.equals(choice) || M.equals(choice)){
+                        notDone = false;
+                        wrongcharacter = false; 
+                    }
+                    else{
+                         //clear screen
+                        System.out.print("\033[H\033[2J");  
+                        System.out.flush();
+                        
+                        System.out.println("Invalid Character !");
+                        wrongcharacter = true; 
+                    }
+                }
+        }
+
+        /////
     }
 
     @Override
@@ -153,12 +217,12 @@ public class Store_Service implements Store_Service_Interface{
             //Map<String, Item> map_item = new HashMap<>();
             Set<Map.Entry<String, Product>> iset = map_Product.entrySet();
             for(Map.Entry<String, Product> i: iset){
-                Product iobj = i.getValue();
+                Product pobj = i.getValue();
 
 
                 
-            System.out.printf("%-20d %-22s %-22s %-15d %-20.2f %-20.2f \n",  iobj.getProductId(),  iobj.getProductName(), iobj.getCategory(),
-                                    iobj.getAvailQty(), iobj.getBuyingPrice(),  iobj.getSellingPrice());
+            System.out.printf("%-20d %-22s %-22s %-15d %-20.2f %-20.2f \n",  pobj.getProductId(),  pobj.getProductName(), pobj.getCategory(),
+                                    pobj.getAvailQty(), pobj.getBuyingPrice(),  pobj.getSellingPrice());
                     
 
             //System.out.printf("%-20s %-22s %.2f \n", iobj.getItemname(), iobj.getCategory(), iobj.getBuyingPrice()); 

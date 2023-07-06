@@ -121,6 +121,46 @@ public class StoreDAO {
          
     }
 
+    //display all products, hashamp return method 
+    public HashMap<Integer, Product>displayallProducts(){
+        HashMap<Integer, Product> map_product = new HashMap<>();
+        Product p; 
+
+        try {
+            String sql = "SELECT * from Product";
+            PreparedStatement ps = con.prepareStatement(sql);
+                 
+            ResultSet rs = ps.executeQuery(); 
+                  
+            while( rs.next() ){
+
+                int ProductId = rs.getInt("productId");
+                String productName = rs.getString("productName"); 
+                String Category = rs.getString("Category");
+                int availQty = rs.getInt("availQty");
+                double buyingPrice = rs.getDouble("buyingPrice");
+                double sellingPrice = rs.getDouble("sellingPrice");
+            
+                //public Product(int productId, String productName, String Category, int availQty, double buyingPrice, double sellingPrice)
+                p = new Product(ProductId, productName, Category, availQty, buyingPrice, sellingPrice);
+
+                //place data in hashmap
+                //key value Integer = productId
+                map_product.put(ProductId, p);
+                   
+            }
+            return map_product;
+                        
+        }
+        catch (SQLException e) {
+               System.out.println(e.getMessage());
+        }
+            
+            return null;
+         
+    }
+
+
 
 
 }
