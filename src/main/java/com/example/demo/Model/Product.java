@@ -13,10 +13,10 @@ public class Product extends Item{
     }
 
     //constructor when posting new product in database
-    public Product(String productName, String Category, int availQty, double buyingPrice) {
+    public Product(int productId, String productName, String Category, int availQty, double buyingPrice) {
         super(productName, Category, buyingPrice);
 
-        //this.productId = productId; 
+        this.productId = productId; 
         this.productName = productName;
         this.availQty = availQty; 
         this.buyingPrice = buyingPrice; 

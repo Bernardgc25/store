@@ -76,7 +76,50 @@ public class StoreDAO {
             return null; 
     }
 
+
+    //display item by category, hashamp return method 
+    public HashMap<String, Product>displaybyCategory(String category){
+        HashMap<String, Product> map_Product = new HashMap<>();
+        Product p; 
     
+        try {
+            String sql = "select * from Product where Category = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            
+            //database query 
+            ps.setString(1, category);
+  
+            ResultSet rs = ps.executeQuery(); 
+                  
+            while( rs.next() ){
+
+
+               // return new Product(rs.getInt("productId"), rs.getString("productName"), rs.getString("Category"), 
+               //         rs.getInt("availQty"), rs.getDouble("buyingPrice"), rs.getDouble("sellingPrice"));
+
+                int ProductId = rs.getInt("productId");
+                String productName = rs.getString("productName"); 
+                String Category = rs.getString("Category");
+                int availQty = rs.getInt("availQty");
+                double buyingPrice = rs.getDouble("buyingPrice");
+                //double sellingPrice = rs.getDouble("sellingPrice");
+
+                //public Product(String productName, String Category, int availQty, double buyingPrice)
+                p = new Product(ProductId, productName, Category, availQty, buyingPrice);
+
+                //key value productName
+                map_Product.put(productName, p);
+            }
+            return map_Product;
+                        
+        }
+        catch (SQLException e) {
+               System.out.println(e.getMessage());
+        }
+            
+            return null;
+         
+    }
 
 
 
