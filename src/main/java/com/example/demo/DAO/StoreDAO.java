@@ -50,16 +50,16 @@ public class StoreDAO {
 
 
     //retrieve product by productName
-    public Product searchProductName(char[] productName){
+    public Product searchProductName(String productName){
     
         try {
             String sql = "SELECT * from Product where productName = ?";
             PreparedStatement ps = con.prepareStatement(sql);
                 
-            //ps.setString(1, productName);
+            ps.setString(1, productName);
             
             //accept character array as parameter ex: char[] productName
-            ps.setCharacterStream(1, new CharArrayReader(productName));
+            //ps.setCharacterStream(1, new CharArrayReader(productName));
 
             ResultSet rs = ps.executeQuery(); 
                   

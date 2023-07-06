@@ -24,7 +24,8 @@ public class Store_Service implements Store_Service_Interface{
 
     //constructor
     public Store_Service(){
-        scanner = new Scanner(System.in);
+        //allows to read input including spaces  
+        scanner = new Scanner(System.in).useDelimiter("\\n");
         sdao = new StoreDAO();
     }
 
@@ -161,24 +162,17 @@ public class Store_Service implements Store_Service_Interface{
             System.out.flush();
 
             System.out.print("Enter product Name to search: ");
-     
             
-            try {
-            
-                //String productName = scanner.nextLine(); 
-                //scanner.nextLine();
-                
-                //String productName = scanner.next(); 
-                //scanner.nextLine();
-
-                //char[] productName = scanner.nextLine().toCharArray();
-                char[] productName = scanner.nextLine().toCharArray();
           
+            try {
+                //allows to read input including spaces  
+                //scanner = new Scanner(System.in).useDelimiter("\\n");
+                String productName = scanner.next();            
 
-                //search product id database
                 Product sp = sdao.searchProductName(productName);
+                
 
-                //product Id does not exist in database
+                //product Name does not exist in database
                 if (sp == null){
                      //clear screen
                     System.out.print("\033[H\033[2J");  
@@ -195,7 +189,7 @@ public class Store_Service implements Store_Service_Interface{
                     System.out.flush();
             
                 }
-                //product Id found
+                //product Name found
                 //display info
                 else {
                      //clear screen
@@ -215,7 +209,7 @@ public class Store_Service implements Store_Service_Interface{
                     System.out.println("");
                     
                 }        
-      
+                
             } catch (InputMismatchException e) {
                 //clear screen
                 System.out.print("\033[H\033[2J");  
@@ -224,11 +218,6 @@ public class Store_Service implements Store_Service_Interface{
                 System.out.println("Invalid input");
             }
 
-            
-                //only accepts s or m
-               // boolean wrongcharacter = true;  
-               // while(wrongcharacter){
-                    //prompt user to search again
                     System.out.println("");
                     System.out.println("(S) search for product Name");
                     System.out.println("(M) go back to menu: ");
@@ -243,11 +232,11 @@ public class Store_Service implements Store_Service_Interface{
                 
                     if (m.equals(choice) || M.equals(choice)){
                         searchnotDone = false; 
-                        //wrongcharacter = false; 
+      
                     }
                     else if (s.equals(choice) || S.equals(choice)) {
                         searchnotDone = true;
-                        //wrongcharacter = false; 
+           
                     }
                     else{
                          //clear screen
@@ -257,14 +246,9 @@ public class Store_Service implements Store_Service_Interface{
                         System.out.println("Invalid Character !");
                         searchnotDone = true;
                         
-                        //wrongcharacter = true; 
-                    }
-                //}
                
-       
-                    
-              
-            
+                    }
+  
         }     
 
      

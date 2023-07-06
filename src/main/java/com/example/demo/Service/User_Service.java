@@ -26,7 +26,9 @@ public class User_Service implements User_Service_Interface{
 
     public User_Service()
     {
-        scanner = new Scanner(System.in);
+        //allows to read input including spaces  
+        scanner = new Scanner(System.in).useDelimiter("\\n");
+  
         //admL = new AdminList_Service();
         adao = new AdminDAO(); 
 
