@@ -87,16 +87,25 @@ select * from  Product where Category = 'Stationary';
 
 
 --sum of Item (buying Price)
-SELECT SUM(buyingPrice) from Product;  
+SELECT SUM(buyingPrice*availQty) from Product;  
 SELECT SUM(availQty) from Product; 
+SELECT SUM(sellingPrice*availQty) from Product; 
 
 --display profits by category 
 SELECT Category, SUM(buyingPrice) FROM Item GROUP BY Category;
 
---display Expenses
-SELECT productName,
+--display Expenses by category wise
+SELECT Category,
 buyingPrice*availQty AS Expenses
 FROM Product;
+
+FROM Product;
+
+--display profit by category wise
+SELECT Category,
+sellingPrice*availQty AS Profit
+FROM Product;
+
 
 
 --create TotalExpenses

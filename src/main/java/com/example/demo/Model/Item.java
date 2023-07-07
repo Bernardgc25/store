@@ -16,6 +16,11 @@ public class Item{
         this.buyingPrice = buyingPrice; 
     }
 
+    public Item(String Category){
+        this.Category = Category; 
+    }
+
+
 
 
     
