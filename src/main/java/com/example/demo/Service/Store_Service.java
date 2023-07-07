@@ -473,8 +473,91 @@ public class Store_Service implements Store_Service_Interface{
 
     @Override
     public void profitbyCategory() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'profitbyCategory'");
+
+        Map<Integer, Product> map_product = new HashMap<Integer, Product>();
+       
+        //invoke serviceDAO
+        map_product = sdao.displayallProducts();
+        
+        boolean notDone = true;
+        //////
+        //clear screen
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();   
+
+        
+        while(notDone){
+            
+            if(map_product.isEmpty()){
+                System.out.println("list is empty!! ");
+            }
+            else{
+                //display all products in table format
+                System.out.printf("%-22s %-20s \n", "Category", "Profit");  
+                System.out.println("");
+
+                double Tsum = 0.0;
+                double Vsum = 0.0;
+                double Gsum = 0.0;
+                double Ssum = 0.0;
+
+                //iterate over by value hashmap 
+                Set<Map.Entry<Integer, Product>> pset = map_product.entrySet();
+                for(Map.Entry<Integer, Product> p: pset){
+                    //System.out.print(+p.getKey());
+                    Product pobj = p.getValue();
+                    
+                    //get sum of each category 
+                    if(pobj.getCategory().equals("Toiletry")){
+                        Tsum = Tsum  + (pobj.getAvailQty() * pobj.getSellingPrice());
+                    }
+                    else if(pobj.getCategory().equals("Vegetables")){
+                        Vsum = Vsum  + (pobj.getAvailQty() * pobj.getSellingPrice());
+                    }
+                    else if(pobj.getCategory().equals("Grocery")){
+                        Gsum = Gsum  + (pobj.getAvailQty() * pobj.getSellingPrice());
+                    }
+                    else if(pobj.getCategory().equals("Stationary")){
+                        Ssum = Ssum  + (pobj.getAvailQty() * pobj.getSellingPrice());
+                    }
+                    
+                    
+                }
+                    //profit by category wise, 2 decimal 
+                    System.out.printf("%-22s %-20.2f \n", "Toiletry: " , Tsum );
+                    System.out.printf("%-22s %-20.2f \n", "Vegetables: " , Vsum );
+                    System.out.printf("%-22s %-20.2f \n", "Grocery " , Gsum );
+                    System.out.printf("%-22s %-20.2f \n", "Stationary: " , Ssum );
+            }
+          
+                //only accepts m
+                boolean wrongcharacter = true;  
+                while(wrongcharacter){
+                    //prompt user to search again
+                    System.out.println("");
+                    System.out.print("(M) go back to menu: ");
+                    //System.out.println("");
+                    //System.out.print("Enter a choice: ");
+
+                    char choice = scanner.next().charAt(0);
+                    Character m = 'm';
+                    Character M = 'M';
+                
+                    if (m.equals(choice) || M.equals(choice)){
+                        notDone = false;
+                        wrongcharacter = false; 
+                    }
+                    else{
+                         //clear screen
+                        System.out.print("\033[H\033[2J");  
+                        System.out.flush();
+                        
+                        System.out.println("Invalid Character !");
+                        wrongcharacter = true; 
+                    }
+                }
+        }
+
     }
 
     @Override
