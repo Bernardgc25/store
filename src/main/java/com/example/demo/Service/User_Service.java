@@ -3,8 +3,7 @@ package com.example.demo.Service;
 import com.example.demo.Model.Admin;
 import com.example.demo.Model.Customer;
 import com.example.demo.DAO.AdminDAO;
-
-
+import com.example.demo.DAO.CustomerDAO;
 import com.example.demo.OptionMenu.optionMenu;
 import com.example.demo.Service_Interface.User_Service_Interface;
 
@@ -22,8 +21,8 @@ public class User_Service implements User_Service_Interface{
     //CustomerList_Service custL; 
     
     AdminDAO adao;
+    CustomerDAO cdao;
     
-
     public User_Service()
     {
         //allows to read input including spaces  
@@ -31,6 +30,8 @@ public class User_Service implements User_Service_Interface{
   
         //admL = new AdminList_Service();
         adao = new AdminDAO(); 
+        cdao = new CustomerDAO();
+
 
 
         //custL = new CustomerList_Service();
@@ -80,7 +81,7 @@ public class User_Service implements User_Service_Interface{
                         System.out.println("you are registering for an Admin account");
                         System.out.println("");
                         //save input into variable including spaces 
-                        scanner.nextLine(); 
+                        //scanner.nextLine(); 
                         
                         //read character array as input, read including spaces
                         //char[] Name = scanner.nextLine().toCharArray();
@@ -101,8 +102,8 @@ public class User_Service implements User_Service_Interface{
                         ad.setPassword(scanner.next().toCharArray());
 
 
-                        //send to database
-                        adao.insert(ad);
+                        //create account to database
+                        adao.insertAdmin(ad); 
 
                         //add to Administrator list
                         //admL.insertAdmin(ad);
@@ -126,6 +127,14 @@ public class User_Service implements User_Service_Interface{
                     case 2:
                         Customer cu = new Customer();    
 
+                        System.out.println("you are registering for an Customer account");
+                        System.out.println("");
+                        //save input into variable including spaces 
+                        //scanner.nextLine(); 
+                        
+                        //read character array as input, read including spaces
+                        //char[] Name = scanner.nextLine().toCharArray();
+
                         System.out.print("Enter firstName: ");
                         cu.setFirstname(scanner.next().toCharArray());
 
@@ -133,7 +142,7 @@ public class User_Service implements User_Service_Interface{
                         cu.setLastname(scanner.next().toCharArray());
 
                         System.out.print("Enter Email: ");
-                        cu.setEmail(scanner.next().toCharArray());
+                        cu.setUsername(scanner.next().toCharArray());
                         
                         System.out.print("Enter userName: ");
                         cu.setEmail(scanner.next().toCharArray());
@@ -142,7 +151,7 @@ public class User_Service implements User_Service_Interface{
                         cu.setPassword(scanner.next().toCharArray());
 
                         //add to customerlist invoke CustomerDAO
-                        //custL.insertCustomer(cu);
+                        cdao.insertCustomer(cu);
                 
                         System.out.print("\033[H\033[2J");  
                         System.out.flush();
@@ -191,7 +200,7 @@ public class User_Service implements User_Service_Interface{
 		System.out.flush();  
 
         //validate user credentials          
-        Admin adminValidated = adao.validate(un,pwd);
+        Admin adminValidated = adao.validateAdmin(un, pwd);
 
             //username and password does not exist in database
             if (adminValidated == null){
@@ -232,46 +241,58 @@ public class User_Service implements User_Service_Interface{
 
     @Override
     public void Customer_login() {
-        // TODO Auto-generated method stub
-        //throw new UnsupportedOperationException("Unimplemented method 'Customer_login'");
-        optionMenu cu = new optionMenu();
 
+        //validate admin credentials 
+        optionMenu cuMenu = new optionMenu(); 
+      
         System.out.print("Enter username: ");
-        //userName = scanner.next().toCharArray();
-       // scanner.nextLine();
-
-        //testuserN = ad.getUsername();
+        un = scanner.next().toCharArray();
 
         System.out.print("Enter password: ");
-       // password= scanner.next().toCharArray();
-        //scanner.nextLine();
-
-        //testpwd = ad.getPassword();
-
+        pwd = scanner.next().toCharArray();
+        
         System.out.print("\033[H\033[2J");  
 		System.out.flush();  
-        
-        //System.out.println("verifying record from Customer database");  
-        //System.out.println("\n");  
 
-        //validate records 
-        //get record from database
-        
+        //validate user credentials          
+        Customer customerValidated = cdao.validateCustomer(un, pwd);
 
-        int cuMenu_Value; 
-        int opt = 0; 
+            //username and password does not exist in database
+            if (customerValidated == null){
+                System.out.println("Incorrect Username or Password");    
+                
+                //ask user again
+                System.out.println("press a character and Enter to continue");
+                char choice = scanner.next().charAt(0);
+                if((choice == 'c') || (choice == 'C')){
+                    System.out.println("Back to Option Menu");
+                }
 
-        boolean notdone = true; 
-            while(notdone){
-                cuMenu_Value =  cu.customerMenu(opt);
-
-                if (cuMenu_Value == 0 ){
-                    notdone = false; 
-                }    
-                //clearscreen
-                System.out.print("\033[H\033[2J");  
-                System.out.flush();          
             }
+            //username and password exist in database
+            else {
+                System.out.println("Login in Successful");   
+                
+                
+            //menu option for administrator
+            int cuMenu_Value; 
+            int opt = 0; 
+
+                //admin option 
+                boolean notdone = true; 
+                    while(notdone){
+                    cuMenu_Value =  cuMenu.adminMenu(opt);
+
+                        if (cuMenu_Value == 0 ){
+                            notdone = false; 
+                        }    
+                        //clearscreen
+                        System.out.print("\033[H\033[2J");  
+                        System.out.flush();          
+                    }
+            }
+                
+    
     }
     
 }

@@ -15,7 +15,7 @@ public class AdminDAO {
         con = DataConnect.getconnect(); 
     }
 
-    public void insert(Admin ad){
+    public void insertAdmin(Admin ad){
         try{
             String sql = "INSERT into Admin(firstname,lastname,username,email,password) values(?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(sql);
@@ -43,7 +43,7 @@ public class AdminDAO {
 
         
         //retrieve username and password from database
-        public Admin validate(char[] un, char[] pwd){
+        public Admin validateAdmin(char[] un, char[] pwd){
         
     
             try {
