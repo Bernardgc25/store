@@ -490,6 +490,7 @@ public class Store_Service implements Store_Service_Interface{
                 System.out.printf("%-22s %-20s \n", "Category", "Expenses");  
                 System.out.println("");
 
+                //sum variables
                 double Tsum = 0.0;
                 double Vsum = 0.0;
                 double Gsum = 0.0;
@@ -522,7 +523,7 @@ public class Store_Service implements Store_Service_Interface{
                     
                     
                 }
-                    //profit by category wise, 2 decimal 
+                    //display profit by category wise, 2 decimal 
                     System.out.printf("%-22s %-20.2f \n", "Toiletry: " , Tsum );
                     System.out.printf("%-22s %-20.2f \n", "Vegetables: " , Vsum );
                     System.out.printf("%-22s %-20.2f \n", "Grocery " , Gsum );
@@ -664,8 +665,7 @@ public class Store_Service implements Store_Service_Interface{
 
     @Override
     public void sortbyPrice() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'sortbyPrice'");
+     
     }
 
 }
