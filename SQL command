@@ -20,7 +20,7 @@ grant priveleges 					GRANT ALL PRIVILEGES ON *.* TO 'username'@'localhost' WITH
 --clear console
 ctrl + L
 
---create a table 
+--create a Table Admin  
 CREATE TABLE Admin (
     FirstName varchar(255),
     LastName varchar(255),
@@ -28,6 +28,16 @@ CREATE TABLE Admin (
     Email varchar(255),
     Password varchar(255)
 );
+
+--create a Table Customer 
+CREATE TABLE Customer (
+    FirstName varchar(255),
+    LastName varchar(255),
+    Username varchar(255),
+    Email varchar(255),
+    Password varchar(255)
+);
+
 
 --insert into table
 insert into Admin values('Bernard', 'GoleCruz', 'Bernard_gcruz@yahoo.com', 'uname', 'pwd');
@@ -78,6 +88,8 @@ show fields from Product;
 --display detail of table
 select * from  Product; 
 select * from  Admin; 
+select * from  Customer; 
+
 
 --select by category 
 select * from  Product where Category = 'Grocery';
