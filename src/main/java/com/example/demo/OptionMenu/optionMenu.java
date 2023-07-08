@@ -132,7 +132,7 @@ public class optionMenu {
                     break;
                 //Display products by Category
                 case 2:
-                   // sm.displaybyCategory(); 
+                    sm.displaybyCategory(); 
                     break;
                 }       
             } 
