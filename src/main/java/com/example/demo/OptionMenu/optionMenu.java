@@ -100,44 +100,40 @@ public class optionMenu {
 
 
     public int customerMenu(int opt){
-        boolean notDone = true;
+    boolean notDone = true;
+        
         while(notDone){
             //clear screen
             System.out.print("\033[H\033[2J");  
-	    	System.out.flush();
+            System.out.flush();
 
+            //System.out.println("Choose your option: ");
             System.out.println("Customer Option Menu");
             System.out.println("0 - Exit Option Menu");
-            System.out.println("1 - Display products by price");
-            System.out.println("2 - Search a product by productName");  
-            System.out.println("3 - Display all products by Category");
-
+            System.out.println("1 - Display products by price (sorted low-high)");
+            System.out.println("2 - Display products by Category");
+                        
             System.out.println("");
             System.out.print("Enter a choice: ");
-
             try {
                 opt = scanner.nextInt();
 
                 switch (opt){
-                //exit option menu
+                //Exit Option Menu
                 case 0: 
                     System.out.print("\033[H\033[2J");  
                     System.out.flush();
 
                     notDone = false; 
                     break; 
-                //display by price sorted low to high    
+                //Search a product by productID
                 case 1: 
-                    sm.sortbyPrice();
+                   // sm.searchbyProductId();
                     break;
-                //search product by product Name
-                case 2:  
-                    sm.searchbyProductName();
+                //Display products by Category
+                case 2:
+                   // sm.displaybyCategory(); 
                     break;
-                //display all products by category
-                case 3:
-                    sm.displaybyCategory(); 
-                    break;     
                 }       
             } 
             catch (InputMismatchException e) {
@@ -156,10 +152,9 @@ public class optionMenu {
                     notDone = true; 
                 }
             }
-
         }
         
-        return opt;
+        return opt;   
     }
 
 

@@ -281,7 +281,7 @@ public class User_Service implements User_Service_Interface{
                 //admin option 
                 boolean notdone = true; 
                     while(notdone){
-                    cuMenu_Value =  cuMenu.adminMenu(opt);
+                    cuMenu_Value =  cuMenu.customerMenu(opt);
 
                         if (cuMenu_Value == 0 ){
                             notdone = false; 
