@@ -128,7 +128,7 @@ public class optionMenu {
                     break; 
                 //Search a product by productID
                 case 1: 
-                   // sm.searchbyProductId();
+                    sm.sortbyPrice();
                     break;
                 //Display products by Category
                 case 2:

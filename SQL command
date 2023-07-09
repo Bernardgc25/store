@@ -11,11 +11,15 @@ display values on table: 		        	select * from [table name];
 exit mysql: 				            	exit
 
 
+--show mysql users
+SELECT user FROM mysql.user;
+--create new user:
+CREATE USER 'username'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+--grant priveleges to user
+GRANT ALL PRIVILEGES ON *.* TO 'username'@'localhost' WITH GRANT OPTION;
 
-show mysql users:					SELECT user FROM mysql.user; 
-create new user:					CREATE USER 'username'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
-grant priveleges 					GRANT ALL PRIVILEGES ON *.* TO 'username'@'localhost' WITH GRANT OPTION;
-
+--show grants to user
+SHOW GRANTS FOR <username>@<host>;
 
 --clear console
 ctrl + L
@@ -39,8 +43,14 @@ CREATE TABLE Customer (
 );
 
 
---insert into table
-insert into Admin values('Bernard', 'GoleCruz', 'Bernard_gcruz@yahoo.com', 'uname', 'pwd');
+--insert into Admin
+insert into Admin values('Bernard', 'GoleCruz', 'uname', 'Bernard_gcruz@yahoo.com', 'pwd');
+
+--insert into Customer
+insert into Customer values('Nathan', 'Medina', 'uname', 'Nathan@yahoo.com', 'pwd');
+
+--delete a row from Admin 
+DELETE FROM Admin WHERE FirstName = 'Nathan';
 
 
 CREATE TABLE Product (

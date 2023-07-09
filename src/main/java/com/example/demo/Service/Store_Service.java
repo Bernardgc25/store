@@ -3,13 +3,20 @@ package com.example.demo.Service;
 import com.example.demo.DAO.StoreDAO;
 import com.example.demo.Model.Product;
 import com.example.demo.Service_Interface.Store_Service_Interface;
- 
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
-import java.util.InputMismatchException;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 public class Store_Service implements Store_Service_Interface{
@@ -659,7 +666,73 @@ public class Store_Service implements Store_Service_Interface{
 
     @Override
     public void sortbyPrice() {
-      //code here
+    
+        //sort by price ascending 
+
+        Map<String, Product> map_product = new HashMap<String, Product>();
+       
+        //invoke serviceDAO
+        map_product = sdao.retrievebyPrice();
+
+            // 1.3 iterating original HashMap
+            for(Map.Entry<String, Product> mkey : map_product.entrySet()){
+                System.out.println("Key : "  + mkey.getKey() + "\t\t"
+                        + "Value : "  +mkey.getValue().getSellingPrice());  
+            }
+
+            // 2. print to console
+            System.out.println("\n\nSorting Values stream in Java 8:\n");
+ 
+ 
+            // 2.1 create LinkedhashMap for storing entries
+            Map<String, Product> valueLHMap = new LinkedHashMap<>();
+ 
+ 
+            // 2.2 Sorting by Keys using comparingByValue() method
+            map_product.entrySet().stream().sorted(
+                Map.Entry.comparingByValue()).forEachOrdered(
+                    //e -> valueLHMap.put(e.getKey(), e.getValue().getSellingPrice()));
+                    e -> valueLHMap.put(e.getKey(), e.getValue()));       
+                
+
+                // c -> valueLHMap.put(c.getKey(), c.getValue())); 
+                        
+            // 2.3 iterating LinkedHashMap in normal way
+            for(Map.Entry<String, Product> valueEntry : valueLHMap.entrySet()){
+                System.out.println("Key : "  + valueEntry.getKey() + "\t\t"
+                    + "Value : "  +valueEntry.getValue());
+                }            
+
+
+
+
+
+        /* 
+        Map<Integer, Product> map_product = new HashMap<Integer, Product>();
+       
+        //invoke serviceDAO
+        map_product = sdao.displayallProducts();
+
+        List<Product> sortbyPrice = new ArrayList<>(map_product.values());
+        
+        List<Product> sortedList = sortbyPrice.stream()
+            .sorted(Comparator.comparingDouble(Product -> Product.getSellingPrice()))
+            .collect(Collectors.toList());
+
+        sortedList.forEach(Product -> System.out.println(Product.getSellingPrice()));
+        
+        System.out.println("Sorted ArrayList: " + sortbyPrice);
+        */
+
+
     }
 
+    /* 
+    @Override
+    public int compare(Product p1, Product p2) {
+        return Double.compare(p1.getSellingPrice(), p2.getSellingPrice());
+    }
+    */
+
 }
+

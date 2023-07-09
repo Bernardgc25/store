@@ -1,11 +1,18 @@
 package com.example.demo.Model;
 
-public class Product extends Item{
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.ArrayList;
+
+import com.mysql.cj.x.protobuf.MysqlxCrud.Collection;
+
+public class Product extends Item implements Comparable<Product>{
 
     protected int productId;
     protected String productName; 
     protected double sellingPrice;
-    protected int availQty; 
+    protected int availQty;
+
 
     //constructors
     public Product(){
@@ -86,7 +93,25 @@ public class Product extends Item{
         this.availQty = availQty;
     }
 
+    /* 
+    @Override
+    public int compareTo(Product arg0) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
+    }
+    */
+
     
-
-
+    
+    //compare by price 
+    @Override
+    public int compareTo(Product p) {
+       
+     //   return Double.compare(this.getSellingPrice(), p.sellingPrice);
+     return 0; 
+    }
+    
+    
+    
+  
 }

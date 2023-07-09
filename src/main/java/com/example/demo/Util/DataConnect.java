@@ -13,7 +13,7 @@ public class DataConnect {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			//It is loading Driver class from jar file
 			//driverManager.getConn
-			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/store","bernard","@Bm071011");
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/store","admin","admin");
 		
 			/*jdbc-protoocal
 			 * mysql-sub protocol
