@@ -5,6 +5,7 @@ import com.example.demo.Model.Product;
 import com.example.demo.Service_Interface.Store_Service_Interface;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -225,10 +226,6 @@ public class Store_Service implements Store_Service_Interface{
             System.out.printf("%-20d %-22s %-22s %-15d %-20.2f %-20.2f \n",  pobj.getProductId(),  pobj.getProductName(), pobj.getCategory(),
                                     pobj.getAvailQty(), pobj.getBuyingPrice(),  pobj.getSellingPrice());
                     
-
-            //System.out.printf("%-20s %-22s %.2f \n", iobj.getItemname(), iobj.getCategory(), iobj.getBuyingPrice()); 
-            //System.out.println("");
-            
             }
         
                
@@ -666,73 +663,64 @@ public class Store_Service implements Store_Service_Interface{
 
     @Override
     public void sortbyPrice() {
+        //clear screen
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();
     
         //sort by price ascending 
-
         Map<String, Product> map_product = new HashMap<String, Product>();
        
         //invoke serviceDAO
         map_product = sdao.retrievebyPrice();
 
-            // 1.3 iterating original HashMap
-            for(Map.Entry<String, Product> mkey : map_product.entrySet()){
-                System.out.println("Key : "  + mkey.getKey() + "\t\t"
-                        + "Value : "  +mkey.getValue().getSellingPrice());  
-            }
+           //display all products in table format
+            System.out.printf("%-22s %-20s \n", "Product Name", "Price");  
+            System.out.println("");
 
-            // 2. print to console
-            System.out.println("\n\nSorting Values stream in Java 8:\n");
- 
- 
-            // 2.1 create LinkedhashMap for storing entries
-            Map<String, Product> valueLHMap = new LinkedHashMap<>();
- 
- 
-            // 2.2 Sorting by Keys using comparingByValue() method
-            map_product.entrySet().stream().sorted(
-                Map.Entry.comparingByValue()).forEachOrdered(
-                    //e -> valueLHMap.put(e.getKey(), e.getValue().getSellingPrice()));
-                    e -> valueLHMap.put(e.getKey(), e.getValue()));       
+            //Step 1: create LinkedhashMap for storing entries
+            Map<String, Double> valueLHMap = new LinkedHashMap<>();
+
+            
+            //Step 2: Sorting by value = selling price using comparingByValue() method
+            map_product.entrySet().stream().sorted(Map.Entry.comparingByValue()).forEachOrdered(
+                    e -> valueLHMap.put(e.getKey(), e.getValue().getSellingPrice()));
+                   
+            //Step 3: iterating LinkedHashMap in normal way
+            //to compare (double)selling price attribute in Product: 
+            //convert Map.Entry<String, Product> to (Map.Entry<String, Double>
+            for(Map.Entry<String, Double> valueEntry : valueLHMap.entrySet()){  
+                System.out.printf("%-22s %-20.2f \n",  valueEntry.getKey(),  valueEntry.getValue());
+            }               
+
+            //only accepts m
+            boolean wrongcharacter = true;  
+            while(wrongcharacter){
+                //prompt user to search again
+                System.out.println("");
+                System.out.print("(M) go back to menu: ");
+            
+                char choice = scanner.next().charAt(0);
+                Character m = 'm';
+                Character M = 'M';
                 
-
-                // c -> valueLHMap.put(c.getKey(), c.getValue())); 
+                if (m.equals(choice) || M.equals(choice)){
+    
+                    wrongcharacter = false; 
+                }
+                else{
+                    //clear screen
+                    System.out.print("\033[H\033[2J");  
+                    System.out.flush();
                         
-            // 2.3 iterating LinkedHashMap in normal way
-            for(Map.Entry<String, Product> valueEntry : valueLHMap.entrySet()){
-                System.out.println("Key : "  + valueEntry.getKey() + "\t\t"
-                    + "Value : "  +valueEntry.getValue());
-                }            
+                    System.out.println("Invalid Character !");
+                     wrongcharacter = true; 
+                    }
+                }
 
-
-
-
-
-        /* 
-        Map<Integer, Product> map_product = new HashMap<Integer, Product>();
-       
-        //invoke serviceDAO
-        map_product = sdao.displayallProducts();
-
-        List<Product> sortbyPrice = new ArrayList<>(map_product.values());
-        
-        List<Product> sortedList = sortbyPrice.stream()
-            .sorted(Comparator.comparingDouble(Product -> Product.getSellingPrice()))
-            .collect(Collectors.toList());
-
-        sortedList.forEach(Product -> System.out.println(Product.getSellingPrice()));
-        
-        System.out.println("Sorted ArrayList: " + sortbyPrice);
-        */
-
+          
 
     }
 
-    /* 
-    @Override
-    public int compare(Product p1, Product p2) {
-        return Double.compare(p1.getSellingPrice(), p2.getSellingPrice());
-    }
-    */
 
 }
 
