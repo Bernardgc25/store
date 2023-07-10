@@ -93,17 +93,10 @@ public class Product extends Item implements Comparable<Product>{
         this.availQty = availQty;
     }
 
-    /* 
-    @Override
-    public int compareTo(Product arg0) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
-    }
-    */
-
-    
+   
     
     //compare by price 
+    //custom comparator for sorting hashmap 
     @Override
     public int compareTo(Product p) {
        

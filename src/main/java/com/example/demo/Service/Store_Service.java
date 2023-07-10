@@ -46,6 +46,9 @@ public class Store_Service implements Store_Service_Interface{
 
     @Override
     public void dispsallProduct() {
+        //clear screen
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();   
 
         Map<Integer, Product> map_product = new HashMap<Integer, Product>();
        
@@ -54,9 +57,7 @@ public class Store_Service implements Store_Service_Interface{
         
         boolean notDone = true;
         //////
-        //clear screen
-        System.out.print("\033[H\033[2J");  
-        System.out.flush();   
+  
 
         
         while(notDone){
@@ -65,6 +66,10 @@ public class Store_Service implements Store_Service_Interface{
                 System.out.println("list is empty!! ");
             }
             else{
+                //clear screen
+                System.out.print("\033[H\033[2J");  
+                System.out.flush();   
+
                 //display all products in table format
                 //System.out.println("list of products:"); 
 
@@ -713,7 +718,7 @@ public class Store_Service implements Store_Service_Interface{
                     System.out.flush();
                         
                     System.out.println("Invalid Character !");
-                     wrongcharacter = true; 
+                    wrongcharacter = true; 
                     }
                 }
 
